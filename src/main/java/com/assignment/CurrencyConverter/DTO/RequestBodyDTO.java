@@ -9,9 +9,15 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseBody {
+public class RequestBodyDTO {
     private String from;
     private String to;
     private double amount;
-    private double convertedAmount;
+
+//    public void setTo(String to){
+//        this.to = to;
+//    }
+//    public String getTo(){
+//        return to;
+//    }
 }

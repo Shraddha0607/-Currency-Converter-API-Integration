@@ -1,9 +1,9 @@
 package com.assignment.CurrencyConverter.Controller;
 
-import com.assignment.CurrencyConverter.DTO.ResponseBody;
+import com.assignment.CurrencyConverter.DTO.RequestBodyDTO;
+import com.assignment.CurrencyConverter.DTO.ResponseBodyDTO;
 import com.assignment.CurrencyConverter.Service.ExchangeRatesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,20 +12,21 @@ public class ExchangeRatesController {
     @Autowired
     ExchangeRatesService exchangeService;
 
-    @GetMapping("/rates")
-    public ResponseEntity<double> getExchangeRates(String currencyId){
-
-        // here first, need to call service method to get exchange rates
-        double exchangedRate = exchangeService.getExchangeRates(Id);
-
-        return new ResponseEntity<double>(exchangedRate, HttpStatusCode.OK);
-    }
+//    @GetMapping("/rates")
+//    public ResponseEntity<double> getExchangeRates(String currencyId){
+//
+//        // here first, need to call service method to get exchange rates
+//        double exchangedRate = exchangeService.getExchangeRates(Id);
+//
+//        return new ResponseEntity<double>(exchangedRate, HttpStatusCode.OK);
+//    }
 
     @PostMapping("/convert")
-    public ResponseBody convertCurrencyToOther(RequestBody requestBody){
+    public ResponseBodyDTO convertCurrencyToOther(@RequestBody RequestBodyDTO requestBodyDTO){
 
         // again need to call service class, to apply logic to convert
-        ResponseBody response = exchangeService.convertCurrencyToOther(requestBody);
+        System.out.println(requestBodyDTO.getTo() + " ");
+        ResponseBodyDTO response = exchangeService.convertCurrencyToOther(requestBodyDTO);
         return response;
     }
 }
